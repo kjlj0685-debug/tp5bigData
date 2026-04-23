@@ -1,0 +1,209 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/): mongosh
+mongosh
+Current Mongosh Log ID: 69e9061daf1f7da6fc3682d0
+Connecting to:          mongodb://127.0.0.1:27017/mongosh?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.8.2
+Using MongoDB:          8.2.7
+Using Mongosh:          2.8.2
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting
+   2026-04-22T18:17:40.447+01:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+Warning: Found ~/.mongorc.js, but not ~/.mongoshrc.js. ~/.mongorc.js will not be loaded.
+  You may want to copy or rename ~/.mongorc.js to ~/.mongoshrc.js.
+mongosh> use info
+switched to db info
+info> db.produits.insertOne({
+|   nom: "Macbook Pro",
+|   fabriquant: "Apple",
+|   prix: 11435.99,
+|   options: ["Intel Core i5", "Retina Display", "Long life battery"]
+| })
+{
+  acknowledged: true,
+  insertedId: ObjectId('69e90699af1f7da6fc3682d1')
+}
+info> db.produits.insertOne({
+|   nom: "Macbook Air",
+|   fabriquant: "Apple",
+|   prix: 125794.73,
+|   ultrabook: true,
+|   options: ["Intel Core i7", "SSD", "Long life battery"]
+| })
+{
+  acknowledged: true,
+  insertedId: ObjectId('69e906a7af1f7da6fc3682d2')
+}
+info> db.produits.insertOne({
+|   nom: "Thinkpad X230",
+|   fabriquant: "Lenovo",
+|   prix: 114358.74,
+|   ultrabook: true,
+|   options: ["Intel Core i5", "SSD", "Long life battery"]
+| })
+{
+  acknowledged: true,
+  insertedId: ObjectId('69e906b9af1f7da6fc3682d3')
+}
+info> db.produits.find()
+[
+  {
+    _id: ObjectId('69e90699af1f7da6fc3682d1'),
+    nom: 'Macbook Pro',
+    fabriquant: 'Apple',
+    prix: 11435.99,
+    options: [ 'Intel Core i5', 'Retina Display', 'Long life battery' ]
+  },
+  {
+    _id: ObjectId('69e906a7af1f7da6fc3682d2'),
+    nom: 'Macbook Air',
+    fabriquant: 'Apple',
+    prix: 125794.73,
+    ultrabook: true,
+    options: [ 'Intel Core i7', 'SSD', 'Long life battery' ]
+  },
+  {
+    _id: ObjectId('69e906b9af1f7da6fc3682d3'),
+    nom: 'Thinkpad X230',
+    fabriquant: 'Lenovo',
+    prix: 114358.74,
+    ultrabook: true,
+    options: [ 'Intel Core i5', 'SSD', 'Long life battery' ]
+  }
+]
+info> db.produits.find().pretty()
+[
+  {
+    _id: ObjectId('69e90699af1f7da6fc3682d1'),
+    nom: 'Macbook Pro',
+    fabriquant: 'Apple',
+    prix: 11435.99,
+    options: [ 'Intel Core i5', 'Retina Display', 'Long life battery' ]
+  },
+  {
+    _id: ObjectId('69e906a7af1f7da6fc3682d2'),
+    nom: 'Macbook Air',
+    fabriquant: 'Apple',
+    prix: 125794.73,
+    ultrabook: true,
+    options: [ 'Intel Core i7', 'SSD', 'Long life battery' ]
+  },
+  {
+    _id: ObjectId('69e906b9af1f7da6fc3682d3'),
+    nom: 'Thinkpad X230',
+    fabriquant: 'Lenovo',
+    prix: 114358.74,
+    ultrabook: true,
+    options: [ 'Intel Core i5', 'SSD', 'Long life battery' ]
+  }
+]
+info> db.produits.findOne()
+{
+  _id: ObjectId('69e90699af1f7da6fc3682d1'),
+  nom: 'Macbook Pro',
+  fabriquant: 'Apple',
+  prix: 11435.99,
+  options: [ 'Intel Core i5', 'Retina Display', 'Long life battery' ]
+}
+info> db.produits.find({ prix: { $gt: 13723 } }).pretty()
+[
+  {
+    _id: ObjectId('69e906a7af1f7da6fc3682d2'),
+    nom: 'Macbook Air',
+    fabriquant: 'Apple',
+    prix: 125794.73,
+    ultrabook: true,
+    options: [ 'Intel Core i7', 'SSD', 'Long life battery' ]
+  },
+  {
+    _id: ObjectId('69e906b9af1f7da6fc3682d3'),
+    nom: 'Thinkpad X230',
+    fabriquant: 'Lenovo',
+    prix: 114358.74,
+    ultrabook: true,
+    options: [ 'Intel Core i5', 'SSD', 'Long life battery' ]
+  }
+]
+info> db.produits.findOne({ ultrabook: true })
+{
+  _id: ObjectId('69e906a7af1f7da6fc3682d2'),
+  nom: 'Macbook Air',
+  fabriquant: 'Apple',
+  prix: 125794.73,
+  ultrabook: true,
+  options: [ 'Intel Core i7', 'SSD', 'Long life battery' ]
+}
+info> db.produits.find({ nom: /Macbook/ }).pretty()
+[
+  {
+    _id: ObjectId('69e90699af1f7da6fc3682d1'),
+    nom: 'Macbook Pro',
+    fabriquant: 'Apple',
+    prix: 11435.99,
+    options: [ 'Intel Core i5', 'Retina Display', 'Long life battery' ]
+  },
+  {
+    _id: ObjectId('69e906a7af1f7da6fc3682d2'),
+    nom: 'Macbook Air',
+    fabriquant: 'Apple',
+    prix: 125794.73,
+    ultrabook: true,
+    options: [ 'Intel Core i7', 'SSD', 'Long life battery' ]
+  }
+]
+info> db.produits.find({ nom: /^Macbook/ }).pretty()
+[
+  {
+    _id: ObjectId('69e90699af1f7da6fc3682d1'),
+    nom: 'Macbook Pro',
+    fabriquant: 'Apple',
+    prix: 11435.99,
+    options: [ 'Intel Core i5', 'Retina Display', 'Long life battery' ]
+  },
+  {
+    _id: ObjectId('69e906a7af1f7da6fc3682d2'),
+    nom: 'Macbook Air',
+    fabriquant: 'Apple',
+    prix: 125794.73,
+    ultrabook: true,
+    options: [ 'Intel Core i7', 'SSD', 'Long life battery' ]
+  }
+]
+info> db.produits.deleteMany({ fabriquant: "Apple" })
+{ acknowledged: true, deletedCount: 2 }
+info> db.produits.find().pretty()
+[
+  {
+    _id: ObjectId('69e906b9af1f7da6fc3682d3'),
+    nom: 'Thinkpad X230',
+    fabriquant: 'Lenovo',
+    prix: 114358.74,
+    ultrabook: true,
+    options: [ 'Intel Core i5', 'SSD', 'Long life battery' ]
+  }
+]
+info> db.produits.find()
+[
+  {
+    _id: ObjectId('69e906b9af1f7da6fc3682d3'),
+    nom: 'Thinkpad X230',
+    fabriquant: 'Lenovo',
+    prix: 114358.74,
+    ultrabook: true,
+    options: [ 'Intel Core i5', 'SSD', 'Long life battery' ]
+  }
+]
+info> db.produits.deleteOne({
+|   _id: ObjectId('69e906b9af1f7da6fc3682d3')
+| })
+{ acknowledged: true, deletedCount: 1 }
+info> db.produits.find()
+
+info>
