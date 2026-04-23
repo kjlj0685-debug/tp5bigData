@@ -1,4 +1,5 @@
 
+
 # 📦 مشروع CRUD باستخدام Python و MongoDB
 
 ## 🧑‍💻 نظرة عامة على المشروع
@@ -12,7 +13,8 @@
 - Python 3.x
 - MongoDB
 - PyMongo
-- VS Code
+- VS Code;
+      pip install pymongo; تثبيت المكتبة
 
 ---
 
@@ -69,10 +71,3 @@
 4 - Modifier
 5 - Supprimer
 0 - Quitter
-## ▶️ طريقة التشغيل
-
-### 1. تثبيت المكتبة
-```bash
-pip install pymongo
-## 2. مثال  
-![alt text](image.png)
